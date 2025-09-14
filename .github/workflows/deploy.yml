@@ -33,6 +33,9 @@ jobs:
       - name: Verify build output
         run: ls -R dist
 
+      - name: Clean FTP deploy cache
+        run: rm -f dist/.ftp-deploy-sync-state.json
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -41,7 +44,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
 
-          server-dir: ./
+          server-dir: /public_html/
 
           log-level: verbose
 
