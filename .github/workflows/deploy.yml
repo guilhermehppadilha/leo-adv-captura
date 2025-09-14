@@ -41,6 +41,6 @@ jobs:
 
           local-dir: ./dist/
 
-          server-dir: ./domains/darkred-toad-771381.hostinger.site.com/public_html/
+          server-dir: ./domains/desbloquearconta.com.br/public_html/
 
           dangerous-clean-slate: true
