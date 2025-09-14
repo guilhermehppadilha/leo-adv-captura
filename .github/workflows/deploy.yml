@@ -1,0 +1,60 @@
+# Nome do seu workflow, aparecerá na aba "Actions" do GitHub
+name: Deploy Astro to Hostinger
+
+# Gatilho: Aciona o workflow em todo push para a branch 'main'
+on:
+  push:
+    branches:
+      - main
+
+# Tarefas (jobs) que serão executadas
+jobs:
+  build-and-deploy:
+    # Usa a versão mais recente do Ubuntu como ambiente
+    runs-on: ubuntu-latest
+
+    # Passos (steps) da tarefa
+    steps:
+      # 1. Clona o seu repositório para o ambiente do GitHub Actions
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Configura o ambiente pnpm (se você usar npm, veja a nota abaixo)
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8 # ou a versão que você usa
+
+      # 3. Configura o ambiente Node.js para o build
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x' # Use a versão do Node.js do seu projeto
+          cache: 'pnpm'
+
+      # 4. Instala as dependências do projeto
+      - name: Install dependencies
+        run: pnpm install
+
+      # 5. Executa o script de build do Astro
+      - name: Build project
+        run: pnpm run build
+        
+      # 6. Faz o deploy dos arquivos para a Hostinger via FTP
+      - name: Deploy to Hostinger via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          # Endereço do servidor FTP, lido do Secret que criamos
+          server: ${{ secrets.FTP_SERVER }}
+          
+          # Nome de usuário FTP, lido do Secret
+          username: ${{ secrets.FTP_USERNAME }}
+          
+          # Senha FTP, lida do Secret
+          password: ${{ secrets.FTP_PASSWORD }}
+          
+          # Pasta local que será enviada (a pasta de build do Astro)
+          local-dir: ./dist/
+          
+          # Pasta de destino no servidor (geralmente public_html)
+          server-dir: public_html/
