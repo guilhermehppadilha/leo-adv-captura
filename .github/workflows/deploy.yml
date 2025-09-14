@@ -30,17 +30,18 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Deploy to Hostinger via FTP
+      - name: Verify build output
+        run: |
+          echo "Listing contents of the dist directory:"
+          ls -R dist
+
+      - name: Deploy to Hostinger via FTP (with debug logs)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
-
           username: ${{ secrets.FTP_USERNAME }}
-
           password: ${{ secrets.FTP_PASSWORD }}
-
           local-dir: ./dist/
-
           server-dir: ./domains/desbloquearconta.com.br/public_html/
-
-          dangerous-clean-slate: true
+          
+          log-level: verbose
