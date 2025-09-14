@@ -1,0 +1,68 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const anoAtual = new Date().getFullYear();
+
+const socialLinks = [
+    { href: '#', label: 'Facebook', icon: 'facebook' },
+    { href: '#', label: 'Instagram', icon: 'instagram' },
+    { href: '#', label: 'TikTok', icon: 'tiktok' },
+    { href: '#', label: 'X', icon: 'x' },
+]
+---
+
+<footer class="bg-slate-900 text-white">
+  <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-8">
+      
+      <div class="space-y-6">
+        <img class="h-18 w-auto" src="/images/logo.png" alt="Logo LP Advogados" />
+        <p class="text-sm leading-6 text-slate-300">
+          Especialistas em desbloqueio de contas, recuperando seu acesso com agilidade e segurança.
+        </p>
+        <div class="flex items-center justify-center sm:justify-start space-x-6">
+          {socialLinks.map(link => (
+            <a href={link.href} class="text-slate-400 hover:text-white hover:cursor-pointer transition-colors">
+              <span class="sr-only">{link.label}</span>
+              <Icon name={link.icon} class="w-6 h-6" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <div class="md:justify-self-end">
+        <h3 class="text-sm font-semibold leading-6">Entre em Contato</h3>
+        <ul role="list" class="mt-6 space-y-4">
+          <li>
+            <a href="tel:+554412345678" class="text-sm leading-6 text-slate-300 hover:text-white">
+              +55 44 1234-5678
+            </a>
+          </li>
+          <li>
+            <a href="mailto:contato@desbloquearconta.com.br" class="text-sm leading-6 text-slate-300 hover:text-white">
+              contato@desbloquearconta.com.br
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-2 lg:col-span-1">
+        <div class="w-full h-48 rounded-lg overflow-hidden border border-white/10">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.197545412852!2d-46.65870422477313!3d-23.56137237880011!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1726200236746!5m2!1spt-BR!2sbr" 
+            class="w-full h-full" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="mt-16 border-t border-white/10 pt-8 sm:mt-20 lg:mt-24">
+      <p class="text-xs leading-5 text-slate-400">&copy; {anoAtual} Leonardo Peres Advogados Associados. Todos os direitos reservados.</p>
+    </div>
+  </div>
+</footer>

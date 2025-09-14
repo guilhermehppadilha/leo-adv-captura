@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components'
+
+const whatsappNumber = "5511912345678";
+const messageBase = "Olá! Vim pelo site e gostaria de mais informações sobre o desbloqueio de conta.";
+
+const messageEnconded = encodeURIComponent(messageBase);
+
+const whatsappLink = `https://wa.me/${whatsappNumber}?text=${messageEnconded}`;
+---
+
+<a 
+  href={whatsappLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Fale conosco pelo WhatsApp"
+  class="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-lg transition-transform focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-1"
+>
+  <Icon name="whatsapp" class="h-12 w-12" />
+</a>

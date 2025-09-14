@@ -1,0 +1,24 @@
+---
+// src/components/Header.astro
+---
+
+<header
+  x-data="header"
+  x-init="init()"
+  x-destroy="destroy()"
+  class="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-8 transition-all duration-300 ease-in-out"
+  :class="{'bg-white shadow-md !py-4': scrolled, 'bg-transparent': !scrolled}"
+>
+  <a 
+    href="/" 
+    aria-label="Voltar para a página inicial"
+    @click.prevent="window.scrollTo({ top: 0, behavior: 'smooth' })"
+  >
+    <img
+      :src="isMobile && scrolled ? '/images/logo.png' : '/images/logo.png'"
+      alt="LP Advogados Associados"
+      :class="isMobile && scrolled ? 'h-16 w-auto' : 'w-[350px] h-auto'"
+      class="transition-all duration-300 ease-in-out"
+    />
+  </a>
+</header>

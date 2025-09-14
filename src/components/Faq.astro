@@ -1,0 +1,59 @@
+---
+import AnimateOnScroll from '../components/AnimateOnScroll.astro'; 
+
+const faqs = [
+  {
+    question: 'Como funciona o desbloqueio?',
+    answer: 'O desbloqueio é feito de forma rápida e eficiente, com um processo totalmente online.',
+  },
+  {
+    question: 'Quais são os prazos?',
+    answer: 'Os prazos variam, mas garantimos que o desbloqueio pode ser realizado em até 24 horas.',
+  },
+  {
+    question: 'Quais são os custos envolvidos?',
+    answer: 'Oferecemos uma análise gratuita e transparente, sem custos ocultos. Você só paga pelo serviço após a aprovação.',
+  },
+  {
+    question: 'O que acontece se eu não agir?',
+    answer: 'Não agir pode resultar em bloqueios permanentes e dificuldades financeiras. É importante resolver rapidamente.',
+  },
+  {
+    question: 'Como posso entrar em contato?',
+    answer: 'Você pode nos contatar facilmente pelo botão do WhatsApp disponível em nosso site.',
+  },
+  {
+    question: 'Qual é a experiência do escritório?',
+    answer: 'Temos anos de experiência e uma alta taxa de sucesso em casos de desbloqueio de contas em todo o Brasil.',
+  },
+]
+---
+
+<section class="bg-white pb-24 sm:pb-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <AnimateOnScroll>
+      <div class="mx-auto max-w-2xl lg:text-center">
+        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Perguntas Frequentes
+        </h2>
+      </div>
+    </AnimateOnScroll>
+    
+    <AnimateOnScroll>
+      <div class="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+        <dl class="grid max-w-xl grid-cols-1 gap-x-8 gap-y-10 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+          {faqs.map((faq) => (
+            <div class="relative">
+              <dt class="text-base font-semibold leading-7 text-gray-900">
+                {faq.question}
+              </dt>
+              <dd class="mt-2 text-base leading-7 text-gray-600">
+                {faq.answer}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </AnimateOnScroll>
+  </div>
+</section>

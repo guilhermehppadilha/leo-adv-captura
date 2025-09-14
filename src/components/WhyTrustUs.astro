@@ -1,0 +1,85 @@
+---
+import { Icon } from 'astro-icon/components'
+import AnimateOnScroll from './AnimateOnScroll.astro'
+
+const stats = [
+  { id: 1, name: 'Desbloqueio da sua conta a partir de', value: 12, unit: 'h' },
+  { id: 2, name: 'Taxa de sucesso nos casos atendidos.', value: 97, unit: '%' },
+  { id: 3, name: 'Presente em todos os estados do Brasil.', value: 27, unit: '' },
+  { id: 4, name: 'Mais de anos de experiência.', value: 6, unit: '' },
+  { id: 5, name: 'Mais de contas recuperadas.', value: 1200, unit: '+' },
+  { id: 6, name: 'Valores liberados para os nossos clientes.', value: 11, unit: 'M', prefix: 'R$' },
+]
+
+const features = [
+  {
+    name: 'Atendimento humanitário e personalizado.',
+    icon: 'chat',
+  },
+  {
+    name: '100% online.',
+    icon: 'mobile-chat',
+  },
+  {
+    name: 'Rápido e com foco na satisfação do cliente.',
+    icon: 'timer',
+  },
+  {
+    name: 'Soluções jurídicas acessíveis para todos.',
+    icon: 'juris',
+  },
+  {
+    name: 'Equipe de advogados especialistas.',
+    icon: 'group-adv',
+  },
+]
+---
+
+<div class="bg-slate-900 py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+        Porque confiar no nosso escritório?
+      </h2>
+      <p class="mt-6 text-lg leading-8 text-slate-300">
+        Especialista em desbloqueio de contas com alta taxa de sucesso e agilidade.
+      </p>
+    </div>
+
+    <div class="mx-auto mt-16 max-w-2xl lg:max-w-none">
+      <dl 
+        class="grid grid-cols-2 gap-x-8 gap-y-16 text-center md:grid-cols-3 lg:grid-cols-6"
+        x-data="statsAnimation"
+        x-intersect.once="animate($el)"
+      >
+        {stats.map((stat) => (
+          <div class="mx-auto flex max-w-xs flex-col gap-y-4">
+            <dt class="text-base leading-7 text-slate-400">{stat.name}</dt>
+            <dd 
+              class="stat-value order-first text-3xl font-semibold tracking-tight text-white sm:text-5xl"
+              data-id={stat.id}
+              data-value={stat.value}
+              data-prefix={stat.prefix || ''}
+              data-unit={stat.unit || ''}
+            >
+              {stat.prefix || ''}0{stat.unit}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </div>
+
+    <AnimateOnScroll>
+      <div class="mt-16 border-t border-white/10 pt-16">
+         <div class="grid grid-cols-2 gap-x-8 gap-y-12 text-center md:grid-cols-3 lg:grid-cols-5">
+          {features.map((feature) => (
+            <div class="flex flex-col items-center gap-y-4">
+              <Icon name={feature.icon} class="w-28 h-28" />
+              <p class="text-base font-semibold leading-7 text-white">{feature.name}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </AnimateOnScroll>
+  </div>
+</div>
