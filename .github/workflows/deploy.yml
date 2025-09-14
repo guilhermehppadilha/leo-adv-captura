@@ -33,7 +33,7 @@ jobs:
       - name: Verify build output
         run: ls -R dist
 
-      - name: DEBUG - Deploy to FTP Root
+      - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
@@ -41,6 +41,8 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
 
-          server-dir: ./
+          server-dir: public_html/
 
           log-level: verbose
+
+          dangerous-clean-slate: true
