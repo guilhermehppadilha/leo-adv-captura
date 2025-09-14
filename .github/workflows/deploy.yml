@@ -30,12 +30,6 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Verify build output
-        run: ls -R dist
-
-      - name: Clean FTP deploy cache
-        run: rm -f dist/.ftp-deploy-sync-state.json
-
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -45,7 +39,5 @@ jobs:
           local-dir: ./dist/
 
           server-dir: ./
-
-          log-level: verbose
 
           dangerous-clean-slate: true
